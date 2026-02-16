@@ -3,12 +3,7 @@
 @section('content')
 <div class="container-fluid">
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Carpets</h3>
-        <a href="{{ route('admin.carpets.create') }}" class="btn btn-primary">
-            + Add Carpet
-        </a>
-    </div>
+    
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -85,6 +80,12 @@
 
             </table>
         </div>
+    </div>
+	<div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Carpets</h3>
+        <a href="{{ route('admin.carpets.create') }}" class="btn btn-primary">
+            + Add Carpet
+        </a>
     </div>
 
 </div>

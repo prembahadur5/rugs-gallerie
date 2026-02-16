@@ -7,12 +7,7 @@
             {{ session('success') }}
         </div>
     @endif
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Banners</h3>
-        <a href="{{ route('admin.banners.create') }}" class="btn btn-primary">
-            + Add Banner
-        </a>
-    </div>
+    
 
     
 
@@ -48,11 +43,7 @@
                             <td>{{ $banner->status ? 'Active' : 'Inactive' }}</td>
 
                             <td>
-                                
-                                    Edit
-                                </a>
-
-                                <form action="{{ route('admin.banners.destroy', $banner) }}"
+                                <form action="{{ route('admin.banners.destroy', $banner->id) }}"
                                       method="POST"
                                       class="d-inline"
                                       onsubmit="return confirm('Delete this banner?')">
@@ -75,6 +66,14 @@
 
             </table>
         </div>
+    </div>
+	<div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Banners</h3>
+        <a href="{{ route('admin.banners.create') }}" class="btn btn-primary">
+            + Add Banner
+        </a>
+		
+
     </div>
 
 </div>

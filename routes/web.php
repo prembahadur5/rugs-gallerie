@@ -14,19 +14,50 @@ use App\Http\Controllers\Admin\CarpetController as AdminCarpetController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\InquiryController;
 
-Route::get('/', [HomeController::class, 'index']);
+//Route::get('/', [HomeController::class, 'index']);
 
 
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+/*Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('banners', BannerController::class)
         ->names('admin.banners')
         ->except(['show', 'edit', 'update']);
 });
+
+/*Route::prefix('admin')
+    ->middleware(['auth','admin'])
+    ->group(function () {
+
+    Route::resource('banners', BannerController::class)
+        ->names('admin.banners')
+        ->except(['show', 'edit', 'update']);
+
+});*
+
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('carpets', AdminCarpetController::class)
         ->names('admin.carpets');
+});*/
+Route::prefix('admin')
+    ->middleware(['auth','admin'])
+    ->group(function () {
+
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])
+        ->name('admin.dashboard');
+
+    Route::resource('banners', BannerController::class)
+        ->names('admin.banners')
+        ->except(['show', 'edit', 'update']);
+
+    Route::resource('carpets', AdminCarpetController::class)
+        ->names('admin.carpets');
+
+    Route::resource('categories', CategoryController::class)
+        ->only(['index', 'create', 'store'])
+        ->names('admin.categories');
+
 });
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -45,9 +76,13 @@ Route::get('/carpets/{slug}', [FrontendCarpetController::class, 'show']);
 Route::get('/category/{slug}', [FrontendCarpetController::class, 'byCategory']);
 
 
-Route::prefix('hi')->group(function () {
+/*Route::prefix('hi')->group(function () {
     Route::get('/carpets', [CarpetController::class, 'index'])->name('hi.carpets');
+});*/
+Route::prefix('hi')->group(function () {
+    Route::get('/carpets', [FrontendCarpetController::class, 'index'])->name('hi.carpets');
 });
+
 
 
 Route::get('/about', function () {
@@ -97,12 +132,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         ->names('admin.categories');
 });
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-
+/*Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])
         ->name('admin.dashboard');
-
-});
+});*/
 
 
 Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
