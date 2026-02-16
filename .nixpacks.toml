@@ -1,2 +1,12 @@
 [phases.setup]
-nixPkgs = ["php82", "php82Extensions.pdo_mysql"]
+nixPkgs = ["php82", "php82Packages.composer", "php82Extensions.pdo_mysql"]
+
+[phases.build]
+cmds = [
+  "composer install --no-dev --optimize-autoloader",
+  "php artisan key:generate --force || true",
+  "php artisan config:clear"
+]
+
+[start]
+cmd = "php -S 0.0.0.0:$PORT -t public"
