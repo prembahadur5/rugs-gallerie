@@ -162,3 +162,20 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+Route::get('/__create_admin', function () {
+    User::updateOrCreate(
+        ['email' => 'admin@example.com'],
+        [
+            'name' => 'Admin',
+            'password' => Hash::make('password'),
+            'role' => 'admin', // MUST match middleware
+        ]
+    );
+
+    return 'Admin user created';
+});
+
