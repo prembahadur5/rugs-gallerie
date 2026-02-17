@@ -180,9 +180,14 @@
 
 
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-			<img src="{{ asset('storage/images/logo.png') }}" alt="Rugs Gallerie" height="100">
-		</a>
+        <!--a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+			<img src="{{ asset('images/logo.png') }}" alt="Rugs Gallerie" height="100">
+		</a-->
+			<a class="navbar-brand" href="{{ url('/') }}">
+				<img src="{{ asset('images/logo.png') }}"
+				alt="Rugs Gallerie"
+				style="height:80px; max-height:none; display:block;">
+			</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
             <span class="navbar-toggler-icon"></span>
