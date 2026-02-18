@@ -34,7 +34,7 @@
                                     <!--img src="{{ asset('storage/banners'.$banner->image) }}"
                                          width="70"
                                          class="rounded"-->
-									<img src="{{ $banner->image }}" alt="Banner" width="200" class="img-thumbnail>
+									<img src="{{ $banner->image }}" alt="Banner" width="70" class="img-thumbnail>
 
                                 @else
                                     <span class="text-muted">No Image</span>
