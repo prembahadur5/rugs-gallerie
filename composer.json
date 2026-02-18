@@ -68,8 +68,7 @@
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
         ]
-		 "post-install-cmd": [
-			"@php artisan key:generate --force",
+		 "post-autoload-dump": [
 			"@php artisan config:clear",
 			"@php artisan config:cache",
 			"@php artisan route:clear",
