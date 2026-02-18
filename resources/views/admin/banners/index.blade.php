@@ -31,7 +31,7 @@
                             
                             <td>
                                 @if($banner->image)
-                                    <img src="{{ asset('storage/'.$banner->image) }}"
+                                    <img src="{{ asset('storage/banners'.$banner->image) }}"
                                          width="70"
                                          class="rounded">
                                 @else
