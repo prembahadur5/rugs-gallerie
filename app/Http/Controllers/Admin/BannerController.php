@@ -52,9 +52,9 @@ class BannerController extends Controller
 		// Cloudinary setup
 		$cloudinary = new Cloudinary([
 			'cloud' => [
-				'cloud_name' => env('dxeollnwd'),
-				'api_key'    => env('732853754476187'),
-				'api_secret' => env('Z9ld2HRwJIjt0HoFiLAQCX4o_gw'),
+				'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+				'api_key'    => env('CLOUDINARY_API_KEY'),
+				'api_secret' => env('CLOUDINARY_API_SECRET'),
 			],
 		]);
 
