@@ -21,7 +21,7 @@ class BannerController extends Controller
         return view('admin.banners.create');
     }
 
-    /*public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'title'  => 'nullable|string|max:255',
@@ -40,8 +40,8 @@ class BannerController extends Controller
         return redirect()
                ->route('admin.banners.index')
             ->with('success', 'Banner added successfully');
-    }*/
-	public function store(Request $request)
+    }
+	/*public function store(Request $request)
 	{
 		$request->validate([
 			'title'  => 'required|string|max:255',
@@ -74,7 +74,7 @@ class BannerController extends Controller
 		return redirect()
 			->route('admin.banners.index')
 			->with('success', 'Banner added successfully');
-	}
+	}*/
 
 
     public function destroy(Banner $banner)
