@@ -16,7 +16,7 @@
     <div class="cinematic-banner rounded shadow overflow-hidden">
         @foreach($banners->take(4) as $index => $banner)
             <img
-                src="{{ asset('storage/banners'.$banner->image) }}"
+                src="{{ asset('storage/'.$banner->image) }}"
                 class="cinematic-slide {{ $index === 0 ? 'active' : '' }}"
                 alt="Rugs Gallerie Banner">
         @endforeach
