@@ -78,7 +78,7 @@
         @foreach($banners as $banner)
             <div class="col-md-4">
                 <img
-                    src="{{ asset('storage/banners'.$banners->image) }}"
+                    src="{{ asset('storage/banners'.$banner->image) }}"
                     class="img-fluid rounded shadow-sm"
                     alt="Carpet Image">
             </div>
