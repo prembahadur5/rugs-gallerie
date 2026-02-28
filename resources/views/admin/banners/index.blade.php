@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid pt-5">
 @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
