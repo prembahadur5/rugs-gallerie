@@ -34,7 +34,7 @@
                             <td>
                                 @if($carpet->image)
                                     <!--img src="{{ asset('storage/'.$carpet->image) }}"-->
-									<img src="{{ asset($carpet->image) }}" alt="{{ $carpet->title }}">
+									<img src="{{ asset($carpet->image) }}" alt="{{ $carpet->title }}" style="height:60px; object-fit:contain;">
                                 @else
                                     <span class="text-muted">No Image</span>
                                 @endif
