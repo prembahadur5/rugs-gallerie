@@ -34,9 +34,7 @@
                             <td>
                                 @if($carpet->image)
                                     <!--img src="{{ asset('storage/'.$carpet->image) }}"-->
-									<img src="{{ asset($banner->image) }}" alt="Banner"
-                                         width="70"
-                                         class="rounded">
+									<img src="{{ asset($carpet->image) }}" alt="{{ $carpet->title }}">
                                 @else
                                     <span class="text-muted">No Image</span>
                                 @endif

@@ -24,7 +24,7 @@ class CarpetController extends Controller
 	}
 
 
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         $data = $request->validate([
             'category_id' => 'required|exists:categories,id',
@@ -39,7 +39,9 @@ class CarpetController extends Controller
         // Main image
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('carpets', 'public');
-        }
+			
+		}
+		
 
         // Create carpet FIRST
         $carpet = Carpet::create($data);
@@ -56,7 +58,44 @@ class CarpetController extends Controller
 
         return redirect()->route('admin.carpets.index')
             ->with('success', 'Carpet added successfully');
-    }
+    }*/
+	public function store(Request $request)
+	{
+		$data = $request->validate([
+			'category_id' => 'required|exists:categories,id',
+			'title'       => 'required|string|max:255',
+			'material'    => 'nullable|string',
+			'size'        => 'nullable|string',
+			'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+		]);
+
+		$data['slug'] = Str::slug($data['title']);
+
+		// ✅ MAIN IMAGE (public/images/carpets)
+		if ($request->hasFile('image')) {
+			$imageName = uniqid().'.'.$request->image->extension();
+			$request->image->move(public_path('images/carpets'), $imageName);
+			$data['image'] = 'images/carpets/'.$imageName;
+		}
+
+		// Create carpet
+		$carpet = Carpet::create($data);
+
+		// ✅ GALLERY IMAGES (public/images/carpets/gallery)
+		if ($request->hasFile('images')) {
+			foreach ($request->file('images') as $img) {
+				$galleryName = uniqid().'.'.$img->extension();
+				$img->move(public_path('images/carpets/gallery'), $galleryName);
+
+				$carpet->images()->create([
+					'image' => 'images/carpets/gallery/'.$galleryName
+				]);
+			}
+		}
+
+		return redirect()->route('admin.carpets.index')
+			->with('success', 'Carpet added successfully');
+	}
 
     public function edit(Carpet $carpet)
     {
@@ -64,7 +103,7 @@ class CarpetController extends Controller
         return view('admin.carpets.edit', compact('carpet', 'categories'));
     }
 
-    public function update(Request $request, Carpet $carpet)
+    /*public function update(Request $request, Carpet $carpet)
     {
         $data = $request->validate([
             'category_id' => 'required|exists:categories,id',
@@ -87,5 +126,34 @@ class CarpetController extends Controller
 
         return redirect()->route('admin.carpets.index')
             ->with('success', 'Carpet updated');
-    }
+    }*/
+	public function update(Request $request, Carpet $carpet)
+	{
+		$data = $request->validate([
+			'category_id' => 'required|exists:categories,id',
+			'title'       => 'required|string|max:255',
+			'material'    => 'nullable|string',
+			'size'        => 'nullable|string',
+			'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+		]);
+
+		$data['slug'] = Str::slug($data['title']);
+
+		if ($request->hasFile('image')) {
+
+			// ✅ delete old image
+			if ($carpet->image && file_exists(public_path($carpet->image))) {
+				unlink(public_path($carpet->image));
+			}
+
+			$imageName = uniqid().'.'.$request->image->extension();
+			$request->image->move(public_path('images/carpets'), $imageName);
+			$data['image'] = 'images/carpets/'.$imageName;
+		}
+
+		$carpet->update($data);
+
+		return redirect()->route('admin.carpets.index')
+			->with('success', 'Carpet updated');
+	}
 }
