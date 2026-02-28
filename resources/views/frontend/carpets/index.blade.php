@@ -10,9 +10,11 @@
         @foreach($category->carpets as $carpet)
             <div class="col-md-3 mb-4">
                 <div class="card">
-                    <img src="{{ $carpet->image
+                    <!--img src="{{ $carpet->image
                         ? asset('storage/'.$carpet->image)
-                        : asset('images/no-image.png') }}">
+                        : asset('images/no-image.png') }}"-->
+					<img src="{{ asset($carpet->image) }}">
+						
                     <div class="card-body">
                         <h6>{{ $carpet->name }}</h6>
                         <a href="{{ url('/carpets/'.$carpet->slug) }}" class="btn btn-sm btn-dark">

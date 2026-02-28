@@ -8,12 +8,11 @@
         {{-- Image --}}
         <div class="col-md-6">
             <div class="card shadow-sm border-0">
-                <!--img
-                    src="{{ asset('storage/'.$carpet->image) }}"
+                <img
+                    src="{{ asset($carpet->image) }}"
                     class="img-fluid rounded"
-                    alt="{{ $carpet->title }}"-->
-					<img src="{{ asset($carpet->image) }}" class="img-fluid rounded" alt="{{ $carpet->title }}">
-            </div>
+                    alt="{{ $carpet->title }}">
+			</div>
         </div>
 
         {{-- Details --}}

@@ -6,10 +6,9 @@
 		@foreach($carpets as $carpet)
 		<div class="card">
 			@if($carpet->image)
-				<!--img src="{{ asset('storage/'.$carpet->image) }}"
-					alt="{{ $carpet->name }}"
-					class="img-fluid"-->
-					<img src="{{ asset($carpet->image) }}" alt="{{ $carpet->name }}">
+				<img src="{{ asset($carpet->image) }}"
+					alt="{{ $carpet->titel }}"
+					class="img-fluid">
 			@else
 				<img src="{{ asset('images/no-image.png') }}" class="img-fluid">
 			@endif
