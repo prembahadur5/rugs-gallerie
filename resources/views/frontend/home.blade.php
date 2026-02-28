@@ -4,7 +4,7 @@
 
 {{-- Hero Header --}}
 <section class="py-5 bg-light text-center">
-    <div class="container">
+    <div class="container pt-5">
         <h1 class="fw-bold display-5">Welcome to Rugs Gallerie</h1>
         <p class="text-muted fs-5">Premium Handmade Carpets</p>
     </div>
