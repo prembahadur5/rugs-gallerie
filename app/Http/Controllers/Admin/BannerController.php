@@ -28,10 +28,24 @@ class BannerController extends Controller
             'image'  => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
             'status' => 'required|boolean',
         ]);
+		//////////new
+		$banner = new Banner();
+		if ($request->hasFile('image')) {
+			$imageName = uniqid().'.'.$request->image->extension();
+			$request->image->move(public_path('images/banners'), $imageName);
+			$banner->image = 'images/banners/'.$imageName;
+		}
+		$banner->title = $request->title;
+		$banner->status = $request->status ?? 1;
+		$banner->save();
 
-        $path = $request->file('image')->store('banners', 'public');
+		return redirect()->route('admin.banners.index')
+			->with('success', 'Banner created successfully');
+			///end new
 
-        Banner::create([
+        //$path = $request->file('image')->store('banners', 'public');
+
+        /*Banner::create([
             'title'  => $request->title,
             'image'  => $path,
             'status' => $request->status,
@@ -40,7 +54,35 @@ class BannerController extends Controller
         return redirect()
                ->route('admin.banners.index')
             ->with('success', 'Banner added successfully');
+		*/	
     }
+	public function update(Request $request, Banner $banner)
+	{
+		$request->validate([
+			'title' => 'required|string|max:255',
+			'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+			'status' => 'required|boolean'
+		]);
+
+		if ($request->hasFile('image')) {
+
+			// delete old image (optional but recommended)
+			if ($banner->image && file_exists(public_path($banner->image))) {
+				unlink(public_path($banner->image));
+			}
+
+			$imageName = uniqid().'.'.$request->image->extension();
+			$request->image->move(public_path('images/banners'), $imageName);
+			$banner->image = 'images/banners/'.$imageName;
+		}
+
+		$banner->title = $request->title;
+		$banner->status = $request->status ?? $banner->status;
+		$banner->save();
+
+		return redirect()->route('admin.banners.index')
+			->with('success', 'Banner updated successfully');
+	}
 	/*public function store(Request $request)
 	{
 		$request->validate([

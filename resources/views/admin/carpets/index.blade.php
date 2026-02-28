@@ -33,7 +33,8 @@
 
                             <td>
                                 @if($carpet->image)
-                                    <img src="{{ asset('storage/'.$carpet->image) }}"
+                                    <!--img src="{{ asset('storage/'.$carpet->image) }}"-->
+									<img src="{{ asset($banner->image) }}" alt="Banner"
                                          width="70"
                                          class="rounded">
                                 @else

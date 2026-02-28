@@ -15,8 +15,8 @@
 <section class="container my-5">
     <div class="cinematic-banner rounded shadow overflow-hidden">
         @foreach($banners->take(4) as $index => $banner)
-            <img
-                src="{{ asset('storage/'.$banner->image) }}"
+            <!--img src="{{ asset('storage/'.$banner->image) }}"-->
+				<img src="{{ asset($banner->image) }}" alt="Banner"
                 class="cinematic-slide {{ $index === 0 ? 'active' : '' }}"
                 alt="Rugs Gallerie Banner">
         @endforeach
@@ -77,8 +77,8 @@
     <div class="row g-3">
         @foreach($banners as $banner)
             <div class="col-md-4">
-                <img
-                    src="{{ asset('storage/'.$banner->image) }}"
+                <!--img src="{{ asset('storage/'.$banner->image) }}"-->
+				<img src="{{ asset($banner->image) }}" alt="Banner"
                     class="img-fluid rounded shadow-sm"
                     alt="Carpet Image">
             </div>

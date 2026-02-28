@@ -31,8 +31,8 @@
                             
                             <td>
                                 @if($banner->image)
-									<img src="{{ asset('storage/'.$banner->image) }}"
-										alt="Banner"
+									<!--img src="{{ asset('storage/'.$banner->image) }}"-->
+									<img src="{{ asset($banner->image) }}" alt="Banner"
 										style="height:60px; object-fit:contain;">
                                 @else
                                     <span class="text-muted">No Image</span>
