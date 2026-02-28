@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\LocaleMiddleware;
+use App\Http\Middleware\TrustProxies;
+
 //use Illuminate\Foundation\Configuration\Middleware;
 
 
@@ -19,9 +21,9 @@ return Application::configure(basePath: dirname(__DIR__))
 			\App\Http\Middleware\LocaleMiddleware::class,
 		]);
 	})*/
+	
 	->withMiddleware(function (Middleware $middleware) {
-		// DO NOTHING HERE FOR NOW
-		
+		$middleware->append(TrustProxies::class);
 	})
 	->withMiddleware(function ($middleware) {
 		$middleware->alias([
