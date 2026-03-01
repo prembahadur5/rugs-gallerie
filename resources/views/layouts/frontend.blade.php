@@ -153,6 +153,13 @@
     color: #ffffff;
 }
 
+.pt-6 {
+    padding-top: 4rem;
+}
+
+.pt-7 {
+    padding-top: 5rem;
+}
 </style>
 
 

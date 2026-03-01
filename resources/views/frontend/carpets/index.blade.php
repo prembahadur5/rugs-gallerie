@@ -1,6 +1,7 @@
 @extends('layouts.frontend')
 
 @section('content')
+<div class="container pt-7">
 <h2 class="mb-4">Our Carpet Collection</h2>
 
 @foreach($categories as $category)
@@ -25,5 +26,6 @@
             </div>
         @endforeach
     </div>
+</div>
 @endforeach
 @endsection

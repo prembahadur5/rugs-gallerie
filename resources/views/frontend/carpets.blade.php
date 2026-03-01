@@ -1,5 +1,4 @@
-@extends('frontend.carpets.index')
-
+@extends('layouts.frontend')
 @section('content')
 <div class="container my-5">
     <h1 class="fw-bold mb-4">Our Carpets</h1>

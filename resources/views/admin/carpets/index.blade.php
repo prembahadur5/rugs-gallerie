@@ -51,10 +51,10 @@
                             <td>{{ $carpet->size ?? '-' }}</td>
 
                             <td>
-                                <a href="{{ route('admin.carpets.edit', $carpet->id) }}"
-                                   class="btn btn-sm btn-warning">
-                                    Edit
-                                </a>
+								<a href="{{ route('admin.carpets.edit', $carpet->id) }}"
+									class="btn btn-sm btn-warning">
+									Edit
+								</a>
 
                                 <form action="{{ route('admin.carpets.destroy', $carpet->id) }}"
                                       method="POST"

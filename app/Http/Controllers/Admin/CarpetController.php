@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class CarpetController extends Controller
 {
     public function index()
@@ -154,6 +155,22 @@ class CarpetController extends Controller
 		$carpet->update($data);
 
 		return redirect()->route('admin.carpets.index')
-			->with('success', 'Carpet updated');
+			->with('success', 'Carpet updated successfully');
+	}
+	
+	public function destroy($id)
+	{
+		$carpet = Carpet::findOrFail($id);
+
+		// delete image if stored
+		if ($carpet->image && Storage::disk('public')->exists($carpet->image)) {
+			Storage::disk('public')->delete($carpet->image);
+		}
+
+		$carpet->delete();
+
+		return redirect()
+			->route('admin.carpets.index')
+			->with('success', 'Carpet deleted successfully');
 	}
 }
